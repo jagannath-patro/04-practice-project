@@ -4,7 +4,9 @@ jobs:
   output-info:
     runs-on: ubuntu-latest
     steps:
-      - name: Get branch name
-        run: echo "${{ github.ref }}"
-      - name: Output event details
-        run: echo "${{ toJSON(github.event) }}"
+      - name: Get head_ref
+        run: echo "${{ github.head_ref }}"
+      - name: Get ref_name
+        run: echo "${{ github.ref_name }}"
+      #- name: Output event details
+      # run: echo "${{ toJSON(github.event) }}"
