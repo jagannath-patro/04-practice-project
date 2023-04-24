@@ -1,10 +1,10 @@
-name: Handle issues
+name: Output info
 on: push
 jobs:
   output-info:
     runs-on: ubuntu-latest
     steps:
       - name: Get branch name
-        run: echo "${{ github.reg }}"
+        run: echo "${{ github.ref }}"
       - name: Output event details
         run: echo "${{ toJSON(github.event) }}"
