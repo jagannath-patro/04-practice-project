@@ -4,5 +4,7 @@ jobs:
   output-info:
     runs-on: ubuntu-latest
     steps:
+      - name: Environment name
+        run: ehco "${{ github.ref }}"
       - name: Output event details
         run: echo "${{ toJSON(github.event) }}"
