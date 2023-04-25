@@ -37,8 +37,8 @@ jobs:
         run: echo "${{ github.ref_name }}"
       - name: Get env type
         run: echo "${{ vars.ENV }}"
-      - name: Hello
-        run: echo "Hello"
+      - name: From where?
+        run: echo "${{ vars.MESSAGE }}"
       #- name: Get head_ref
       #  run: echo "${{ github.head_ref }}"
       #- name: Get ref_name
