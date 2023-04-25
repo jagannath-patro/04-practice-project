@@ -10,21 +10,23 @@ on:
 jobs:
   set-env:
     runs-on: ubuntu-latest
+    outputs:
+      deployment-environment: ${{ env.type }}
     steps:
       - name: Set env variable
         run: |
           if [ ${{ github.ref_name }} == 'dev' ] || [ ${{ github.ref_name }} == f-* ]; then
-            echo "{delpoyment_environment}='dev'" >> $GITHUB_ENV
+            echo "{type}='dev'" >> $GITHUB_ENV
           elif [ ${{ github.ref_name }} == 'master' ]; then
-            echo "{delpoyment_environment}='prod'" >> $GITHUB_ENV
+            echo "{type}='prod'" >> $GITHUB_ENV
           else
-            echo "{delpoyment_environment}='dev'" >> $GITHUB_ENV
+            echo "{type}='dev'" >> $GITHUB_ENV
           fi
         shell: bash
   output-info:
     needs: set-env
     runs-on: ubuntu-latest
-    environment: ${{ env.delpoyment_environment }}
+    environment: ${{ needs.set-env.outputs.deployment-environment }}
     steps:
       - name: Get env type
         run: echo "${{ env.ENV }}"
