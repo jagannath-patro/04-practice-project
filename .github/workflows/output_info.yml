@@ -23,6 +23,8 @@ jobs:
             echo "type='dev'" >> $GITHUB_ENV
           fi
         shell: bash
+      - name: Echo type
+        run: echo "${{ env.type }}"
   output-info:
     needs: set-env
     runs-on: ubuntu-latest
