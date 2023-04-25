@@ -30,8 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ needs.set-env.outputs.deployment-environment }}
     steps:
+      - name: Echo output
+        run: echo "${{ needs.set-env.outputs.deployment-environment }}"
       - name: Get env type
-        run: echo "${{ env.ENV }}"
+        run: echo "${{ vars.ENV }}"
       #- name: Get head_ref
       #  run: echo "${{ github.head_ref }}"
       #- name: Get ref_name
