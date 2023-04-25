@@ -8,12 +8,28 @@ on:
     branches:
       - dev
 jobs:
-  output-info:
+  set-env:
     runs-on: ubuntu-latest
     steps:
-      - name: Get head_ref
-        run: echo "${{ github.head_ref }}"
-      - name: Get ref_name
-        run: echo "${{ github.ref_name }}"
+      - name: Set env variable
+        run: |
+          if [ ${{ github.ref_name }} == 'dev' ] || [ ${{ github.ref_name }} == f-* ]; then
+            echo "{delpoyment_environment}='dev'" >> $GITHUB_ENV
+          elif [ ${{ github.ref_name }} == 'master' ]; then
+            echo "{delpoyment_environment}='prod'" >> $GITHUB_ENV
+          else
+            echo "{delpoyment_environment}='dev'" >> $GITHUB_ENV
+          fi
+        shell: bash
+  output-info:
+    runs-on: ubuntu-latest
+    environment: ${{ env.delpoyment_environment }}
+    steps:
+      - name: Get env type
+        run: echo "${{ env.ENV }}"
+      #- name: Get head_ref
+      #  run: echo "${{ github.head_ref }}"
+      #- name: Get ref_name
+      #  run: echo "${{ github.ref_name }}"
       #- name: Output event details
       # run: echo "${{ toJSON(github.event) }}"
