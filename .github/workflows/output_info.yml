@@ -16,11 +16,11 @@ jobs:
       - name: Set env variable
         run: |
           if [ ${{ github.ref_name }} == 'dev' ] || [ ${{ github.ref_name }} == f-* ]; then
-            echo "type='dev'" >> $GITHUB_ENV
+            echo "type=dev" >> $GITHUB_ENV
           elif [ ${{ github.ref_name }} == 'master' ]; then
-            echo "type='prod'" >> $GITHUB_ENV
+            echo "type=prod" >> $GITHUB_ENV
           else
-            echo "type='dev'" >> $GITHUB_ENV
+            echo "type=dev" >> $GITHUB_ENV
           fi
         shell: bash
       - name: Echo type
