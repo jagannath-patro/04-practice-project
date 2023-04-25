@@ -22,6 +22,7 @@ jobs:
           fi
         shell: bash
   output-info:
+    needs: set-env
     runs-on: ubuntu-latest
     environment: ${{ env.delpoyment_environment }}
     steps:
