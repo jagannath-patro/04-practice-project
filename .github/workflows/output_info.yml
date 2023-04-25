@@ -13,6 +13,8 @@ jobs:
     outputs:
       deployment-environment: ${{ env.type }}
     steps:
+      - name: Get branch name
+        run: echo "${{ github.ref_name }}"
       - name: Set env variable
         run: |
           if [ ${{ github.ref_name }} == 'dev' ] || [ ${{ github.ref_name }} == f-* ]; then
