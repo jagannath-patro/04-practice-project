@@ -1,5 +1,12 @@
 name: Output info
-on: push
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - dev
 jobs:
   output-info:
     runs-on: ubuntu-latest
