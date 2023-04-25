@@ -45,6 +45,7 @@ jobs:
       # run: echo "${{ toJSON(github.event) }}"
   info:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: From where?
         run: echo "${{ vars.MESSAGE }}"
